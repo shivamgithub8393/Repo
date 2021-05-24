@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        #cont1{
+            width: 90vw;
+            display: flex;
+           
+        }
+        #cont1-a{
+            width: 25%;
+            height: 100vh;
+            border: 1px solid black;
+        }
+
+        form{
+            width: 80%;
+            margin: auto;
+            padding-top: 20%;
+        }
+        form>input{
+            width: 150px;
+            margin-bottom: 15px;
+        }
+        button{
+            color: teal;
+        }
+            #cont1-b{
+            width: 75%;
+            /* height: 100vh; */
+            border: 1px solid black;
+            display: grid;
+            grid-template-columns: 200px 200px 200px;
+            gap: 20px;
+           
+        }
+        .layout{
+            width: 100%;
+            height: 250px;
+            border:1px solid red;
+            margin: 20px;
+        }
+    </style>
+</head>
+<body>
+    <div id="cont1">
+        <div id="cont1-a">
+            <form>
+                <input type="text" id="name" placeholder="Name">
+                <input type="number" id="price" placeholder="Price">
+                <input type="text" id="description" placeholder="Description">
+                <input type="number" id="day" placeholder="Estimated Delivery">
+                <input type="url" id="image" placeholder="Image url (optional)">
+                <button id="btn">Add Product</button>
+            </form>
+        </div>
+        <div id="cont1-b"></div>
+    </div>
+</body>
+</html>
+<script>
+    var btn = document.getElementById("btn")
+    btn.addEventListener("click",submit)
+
+    var output = document.getElementById("cont1-b")
+
+
+
+    function submit(en){
+        en.preventDefault()
+
+        let nam = document.getElementById("name").value;
+        let price = document.getElementById("price").value;
+        let description = document.getElementById("description").value;
+        let day = document.getElementById("day").value;
+        let img = document.getElementById("image").value;
+        let div = document.createElement("div")
+
+        let remove = document.createElement("button")
+        remove.innerText="Remove"
+        remove.style.margin="25px"
+        // remove.style.marginTop="200px"
+        let update = document.createElement("button")
+        update.innerText="Update"
+
+        p1= document.createElement("p")
+        p2= document.createElement("p")
+        p3= document.createElement("p")
+        p4= document.createElement("p")
+
+        p1.innerText=`Name:   ${nam}`
+        p2.innerText=`Price:   ${price}`
+        p3.innerText=`Description:   ${description}`
+        p4.innerText=`Estimated Delivery:   ${day}`
+
+        div.append(p1,p2,p3,p4, remove, update)
+        div.setAttribute("class","layout")
+        output.append(div)
+
+        remove.addEventListener("click",rm)
+
+        let up = update.addEventListener("click",updt)
+
+
+
+    }
+
+    function rm (e){
+        e.target.parentNode.remove()
+    }
+    function updt(s){
+        var new_price = prompt("Enter new price")
+        return new_price
+        
+    }
+</script>
